@@ -3,10 +3,13 @@ var VueResource = require('vue-resource');
 
 Vue.use(VueResource);
 
+var VHome = require('../views/v-home.vue');
+var VAbout = require('../views/v-about.vue');
+
 var routes = {
-    '/': { 'name': 'Home', 'view': require('../views/v-home.vue') },
-    '/index.html': { 'name': 'Home', 'view': require('../views/v-home.vue') },
-    '/about': { 'name': 'About', 'view': require('../views/v-about.vue') }
+    '/': { 'name': 'Home', 'view':  VHome},
+    '/index.html': { 'name': 'Home', 'view': VHome },
+    '/about': { 'name': 'About', 'view': VAbout}
 }
 var vm = new Vue({
     el: '#app',
