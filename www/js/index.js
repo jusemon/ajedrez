@@ -1,14 +1,14 @@
 var app = {
-    initialize: function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);        
+    initialize: function () {
+        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
     },
 
-    onDeviceReady: function() {
+    onDeviceReady: function () {
         this.receivedEvent('deviceready');
     },
-    
-    receivedEvent: function(id) {
-        console.log('Received Event: ' + id);        
+
+    receivedEvent: function (id) {
+        console.log('Received Event: ' + id);
     },
 };
 
