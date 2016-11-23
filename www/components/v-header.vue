@@ -5,6 +5,7 @@
             <li>
                 <v-link href="/">Home</v-link>
                 <v-link href="/about">About</v-link>
+                <v-link href="/game">Game</v-link>
             </li>
         </ul>
     </header>

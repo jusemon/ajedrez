@@ -1,15 +1,19 @@
 var Vue = require('vue/dist/vue.js');
 var VueResource = require('vue-resource');
+var ChessEngine = require('node-chess');
+var game = ChessEngine.classic.engine();
 
 Vue.use(VueResource);
 
 var VHome = require('../views/v-home.vue');
 var VAbout = require('../views/v-about.vue');
+var VGame = require('../views/v-game.vue');
 
 var routes = {
     '/': { 'name': 'Home', 'view':  VHome},
     '/index.html': { 'name': 'Home', 'view': VHome },
-    '/about': { 'name': 'About', 'view': VAbout}
+    '/about': { 'name': 'About', 'view': VAbout},
+    '/game': { 'name': 'Game', 'view': VGame}
 }
 var vm = new Vue({
     el: '#app',

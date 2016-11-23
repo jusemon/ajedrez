@@ -12,7 +12,8 @@
   var routes = {
     '/': 'Home',
     '/index.html': 'Home',
-    '/about': 'About'
+    '/about': 'About',
+    '/game': 'Game'
   }
   export default {
     props: {
