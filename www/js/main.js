@@ -1,13 +1,11 @@
 var Vue = require('vue/dist/vue.js');
-var VueResource = require('vue-resource');
-var ChessEngine = require('node-chess');
-var game = ChessEngine.classic.engine();
-
-Vue.use(VueResource);
+var VueResource = require('vue-resource')
 
 var VHome = require('../views/v-home.vue');
 var VAbout = require('../views/v-about.vue');
 var VGame = require('../views/v-game.vue');
+
+Vue.use(VueResource);
 
 var routes = {
     '/': { 'name': 'Home', 'view':  VHome},
@@ -15,6 +13,7 @@ var routes = {
     '/about': { 'name': 'About', 'view': VAbout},
     '/game': { 'name': 'Game', 'view': VGame}
 }
+
 var vm = new Vue({
     el: '#app',
     data: {
@@ -33,6 +32,8 @@ var vm = new Vue({
     }
 });
 
+
+
 window.addEventListener('popstate', () => {
     app.currentRoute = window.location.pathname
-})
+});
