@@ -1,5 +1,5 @@
 function positionToFen(position, halfmoveClock, moveNumber) {
-    var text = "";
+    var text = '';
     text += buildBoardRepresentation(position);
     text += ' ';
     text += position.turn;
@@ -38,14 +38,26 @@ function buildBoardRepresentation(position) {
         if (counter > 0) {
             output = output + counter.toString();
         }
-        if (i < 56) output = output + "/";
+        if (i < 56) output = output + '/';
     }
     var aux = output.split('/');
     var output = aux.slice(0);
     let j = 0;
-    for (let i = output.length - 1; i > -1; i--){
+    for (let i = output.length - 1; i > -1; i--) {
         output[i] = aux[j];
-        j++; 
-    }    
+        j++;
+    }
     return output.join('/');
+}
+
+function buildEnPassantTarget(position) {
+    var text = '';
+    var lastPawnDMove = position.getLastPawnDMove();
+    if (lastPawnDMove == null) {
+        text.append("-");
+    } else {
+        var target = lastPawnDMove.add(0, position.getNextPlayerTurn() == ChessSide.WHITE ? 1 : -1);
+        text.append(target.getPgnCoordinates());
+    }
+    return text.toString();
 }
