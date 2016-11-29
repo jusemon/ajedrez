@@ -12,30 +12,73 @@ export default {
     methods: {
       init (event) {
         event.preventDefault()
-        var Chess = require('chess.js').Chess;
         var ChessBoard = require('./../js/chessboard.js');
-
+        var ChessRules = require('chess-rules');
         var ChessAI = require('chess-ai-kong');
+        var ChessHelper = require('./../js/helper.js');
+
+        var pos = ChessRules.getInitialPosition();
+
         ChessAI.setOptions({
             depth: 4,
             monitor: true,
             strategy: 'basic',
             timeout: 10000
         });
-        var game = new Chess();
-        var makeMove = function() {
-            var possibleMoves = game.moves();
-                if (game.game_over() === true || game.in_draw() === true || possibleMoves.length === 0) return;                                
-                //game.move();
-            // board.position(game.fen());
-            // window.setTimeout(makeRandomMove, 500);
-        }
-        var board = ChessBoard('board', 'start');
-        console.log("board", board);
-        console.log("game", game);
-        console.log("AI", ChessAI);
-        console.log(ChessAI.playPosition(game.fen()));
-        //window.setTimeout(makeRandomMove, 500);
+        
+        var onDragStart = function(source, piece, position, orientation) {            
+            if (ChessRules.getGameStatus(pos) !== 'OPEN' ||
+                (pos.turn === 'W' && piece.search(/^b/) !== -1) ||
+                (pos.turn === 'B' && piece.search(/^w/) !== -1)) {
+                    return false;
+                }
+        };
+
+        var onDrop = function(source, target) {
+            // see if the move is legal
+            var move = ChessHelper.toMove(source, target);
+            var availablesMoves = ChessRules.getAvailableMoves(pos);
+            if(ChessHelper.availableMove(move, availablesMoves)){
+                pos = ChessRules.applyMove(pos, move);
+            }
+            else{
+                return 'snapback';
+            }
+            
+            console.log(pos.turn);
+
+            // var move = game.move({
+            //     from: source,
+            //     to: target,
+            //     promotion: 'q' // NOTE: always promote to a queen for example simplicity
+            // });
+
+            // illegal move
+
+            // if (move === null) return 'snapback';            
+            // updateStatus();
+        };
+
+        // for castling, en passant, pawn promotion
+        var onSnapEnd = function() {
+            console.log(pos);
+            board.position(ChessHelper.toPartialFen(pos));
+        };
+        
+        var cfg = {
+            draggable: true,
+            position: 'start',
+            onDragStart: onDragStart,
+            onDrop: onDrop,
+            onSnapEnd: onSnapEnd
+        };
+        var board = ChessBoard('board', cfg);
+
+        // console.log("board", board);        
+        // console.log("AI", ChessAI);
+      },
+      getPosition(){
+          return pos;
       }
     }
   }  

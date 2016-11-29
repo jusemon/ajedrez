@@ -1,3 +1,5 @@
+'use strict';
+
 function positionToFen(position, halfmoveClock, moveNumber) {
     var text = '';
     text += buildBoardRepresentation(position);
@@ -61,3 +63,45 @@ function buildEnPassantTarget(position) {
     }
     return text.toString();
 }
+
+function getDict(){
+    var abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+    var dict = {};
+    var counter = 0;
+    for(let i = 1; i<9; i++){
+        for(let j = 0; j<8; j++){
+            dict[abc[j]+i] = counter;
+            counter++; 
+        }
+    }
+    return dict;
+}
+
+function builMoveFromSourceTarget(source, target){
+    console.log(source, target, ChessHelper.dict) 
+    return {
+        src: ChessHelper.dict[source],
+        dst: ChessHelper.dict[target] 
+    }
+}
+
+function containsObject(obj, list) {
+    var i;
+    for (i = 0; i < list.length; i++) {
+        if (list[i].src === obj.src && list[i].dst === obj.dst) 
+            return true;
+        
+    }
+    return false;
+}
+
+var ChessHelper = {
+    toPartialFen: buildBoardRepresentation,
+    toMove: builMoveFromSourceTarget,
+    dict: getDict(),
+    availableMove:containsObject 
+}
+
+
+
+module.exports = ChessHelper;
