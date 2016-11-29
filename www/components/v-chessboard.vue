@@ -45,23 +45,16 @@ export default {
                 return 'snapback';
             }
             
-            console.log(pos.turn);
-
-            // var move = game.move({
-            //     from: source,
-            //     to: target,
-            //     promotion: 'q' // NOTE: always promote to a queen for example simplicity
-            // });
-
-            // illegal move
-
-            // if (move === null) return 'snapback';            
-            // updateStatus();
+            if(pos.turn == 'B'){
+                setTimeout(function(){
+                    move = ChessAI.playPosition(pos);
+                    pos = ChessRules.applyMove(pos, ChessRules.pgnToMove(pos, move));
+                    onSnapEnd();
+                }, 100)
+            }
         };
 
-        // for castling, en passant, pawn promotion
-        var onSnapEnd = function() {
-            console.log(pos);
+        var onSnapEnd = function() {            
             board.position(ChessHelper.toPartialFen(pos));
         };
         
@@ -72,13 +65,8 @@ export default {
             onDrop: onDrop,
             onSnapEnd: onSnapEnd
         };
-        var board = ChessBoard('board', cfg);
 
-        // console.log("board", board);        
-        // console.log("AI", ChessAI);
-      },
-      getPosition(){
-          return pos;
+        var board = ChessBoard('board', cfg);
       }
     }
   }  
