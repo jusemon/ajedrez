@@ -3,20 +3,19 @@
         <button @click="init">
             Nuevo juego
         </button>
-        <div id="board" style="width: 400px"></div>
+        <div id="board"></div>
     </div>
 </template>
 
 <script>
 export default {
     methods: {
-      init (event) {
-        event.preventDefault()
+      init: function (event) {
+        event.preventDefault();
         var ChessBoard = require('./../js/chessboard.js');
         var ChessRules = require('chess-rules');
         var ChessAI = require('chess-ai-kong');
         var ChessHelper = require('./../js/helper.js');
-
         var pos = ChessRules.getInitialPosition();
 
         ChessAI.setOptions({
@@ -35,7 +34,7 @@ export default {
         };
 
         var onDrop = function(source, target) {
-            // see if the move is legal
+            // see if the move is legal            
             var move = ChessHelper.toMove(source, target);
             var availablesMoves = ChessRules.getAvailableMoves(pos);
             if(ChessHelper.availableMove(move, availablesMoves)){
@@ -44,12 +43,12 @@ export default {
             else{
                 return 'snapback';
             }
-            
+
             if(pos.turn == 'B'){
                 setTimeout(function(){
                     move = ChessAI.playPosition(pos);
                     pos = ChessRules.applyMove(pos, ChessRules.pgnToMove(pos, move));
-                    onSnapEnd();
+                    //onSnapEnd();
                 }, 100)
             }
         };

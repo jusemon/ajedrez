@@ -8,7 +8,7 @@
 <script>
     var VMainLayout = require('../layout/v-main-layout.vue');
     export default {
-        data () {
+        data: function () {
             return {
                 name: "Sebastián"
             }
