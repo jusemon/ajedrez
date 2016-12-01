@@ -10,12 +10,11 @@
     "babel-runtime": "6.18.0",
     "browserify": "~13.1.1",
     "chess-ai-kong": "0.3.3",
-    "chess.js": "^0.10.2",
     "vue": "~2.0.8",
     "vue-cordova": "^0.1.1",
-    "vue-hot-reload-api": "2.0.6",
     "vue-resource": "~1.0.3",
-    "vueify": "~9.3.0"
+    "vueify": "~9.3.0",
+    "vue-hot-reload-api": "~2.0.6"
   },
   "author": {
     "name": "Juan Sebastián Montoya Montoya",
