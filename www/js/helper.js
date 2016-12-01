@@ -34,9 +34,7 @@ function buildBoardRepresentation(position) {
 }
 
 function getDict(){
-    var abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
-    var dict = {};
-    var counter = 0;
+    var abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'], dict ={}, counter = 0;
     for(var i = 1; i<9; i++){
         for(var j = 0; j<8; j++){
             dict[abc[j]+i] = counter;
@@ -46,7 +44,7 @@ function getDict(){
     return dict;
 }
 
-function builMoveFromSourceTarget(source, target){
+function buildMoveFromSourceTarget(source, target){
     return {
         src: ChessHelper.dict[source],
         dst: ChessHelper.dict[target] 
@@ -66,7 +64,7 @@ function containsObject(obj, list) {
 
 var ChessHelper = {
     toPartialFen: buildBoardRepresentation,
-    toMove: builMoveFromSourceTarget,
+    toMove: buildMoveFromSourceTarget,
     dict: getDict(),
     availableMove:containsObject 
 }

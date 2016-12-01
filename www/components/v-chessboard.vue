@@ -38,19 +38,11 @@ export default {
             var move = ChessHelper.toMove(source, target);
             var availablesMoves = ChessRules.getAvailableMoves(pos);
             if(ChessHelper.availableMove(move, availablesMoves)){
-                pos = ChessRules.applyMove(pos, move);
+                pos = ChessRules.applyMove(pos, move);   
             }
             else{
                 return 'snapback';
-            }
-
-            if(pos.turn == 'B'){
-                setTimeout(function(){
-                    move = ChessAI.playPosition(pos);
-                    pos = ChessRules.applyMove(pos, ChessRules.pgnToMove(pos, move));
-                    onSnapEnd();
-                }, 100)
-            }
+            }         
         };
 
         var onSnapEnd = function() {            
@@ -72,8 +64,5 @@ export default {
 </script>
 
 <style scoped>
-    #chessboard {
-        width: 500px;
-        height: 500px;
-    }
+
 </style>
