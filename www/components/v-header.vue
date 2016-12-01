@@ -2,8 +2,8 @@
     <header>
         This is the HEAADEEEERRR!!!! <span>{{now}}</span>
         <ul>
-            <li>
-                <v-link v-for="(value, key) in uniqueRoutes" v-bind:href="key">{{value}}</v-link>                
+            <li  v-for="(value, key) in uniqueRoutes">
+                <v-link v-bind:href="key">{{value}}</v-link>                
             </li>
         </ul>
     </header>

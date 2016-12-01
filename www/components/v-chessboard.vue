@@ -48,7 +48,7 @@ export default {
                 setTimeout(function(){
                     move = ChessAI.playPosition(pos);
                     pos = ChessRules.applyMove(pos, ChessRules.pgnToMove(pos, move));
-                    //onSnapEnd();
+                    onSnapEnd();
                 }, 100)
             }
         };
