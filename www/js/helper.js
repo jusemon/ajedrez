@@ -1,6 +1,17 @@
 'use strict';
 
-function buildBoardRepresentation(position) {
+var dict = (function () {
+    var abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'], dict = {}, counter = 0;
+    for (var i = 1; i < 9; i++) {
+        for (var j = 0; j < 8; j++) {
+            dict[abc[j] + i] = counter;
+            counter++;
+        }
+    }
+    return dict;
+})();
+
+function toPartialFen(position) {
     var board = position.board;
     var output = "";
     for (var i = 0; i < 64; i = i + 8) {
@@ -33,41 +44,28 @@ function buildBoardRepresentation(position) {
     return output.join('/');
 }
 
-function getDict(){
-    var abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'], dict ={}, counter = 0;
-    for(var i = 1; i<9; i++){
-        for(var j = 0; j<8; j++){
-            dict[abc[j]+i] = counter;
-            counter++; 
-        }
-    }
-    return dict;
-}
-
-function buildMoveFromSourceTarget(source, target){
+function toMove(source, target) {
     return {
         src: ChessHelper.dict[source],
-        dst: ChessHelper.dict[target] 
+        dst: ChessHelper.dict[target]
     }
 }
 
-function containsObject(obj, list) {
+function isAvailableMove(obj, list) {
     var i;
     for (i = 0; i < list.length; i++) {
-        if (list[i].src === obj.src && list[i].dst === obj.dst) 
+        if (list[i].src === obj.src && list[i].dst === obj.dst)
             return true;
-        
+
     }
     return false;
 }
 
-
 var ChessHelper = {
-    toPartialFen: buildBoardRepresentation,
-    toMove: buildMoveFromSourceTarget,
-    dict: getDict(),
-    availableMove:containsObject 
+    toPartialFen: toPartialFen,
+    toMove: toMove,
+    isAvailableMove: isAvailableMove,
+    dict: dict
 }
 
 module.exports = ChessHelper;
-

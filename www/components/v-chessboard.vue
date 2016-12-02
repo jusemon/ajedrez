@@ -34,15 +34,22 @@ export default {
         };
 
         var onDrop = function(source, target) {
-            // see if the move is legal            
             var move = ChessHelper.toMove(source, target);
             var availablesMoves = ChessRules.getAvailableMoves(pos);
-            if(ChessHelper.availableMove(move, availablesMoves)){
+            if(ChessHelper.isAvailableMove(move, availablesMoves)){
                 pos = ChessRules.applyMove(pos, move);   
             }
             else{
                 return 'snapback';
-            }         
+            }
+            // Aqui para que la IA maneje los negros
+            // if(pos.turn == 'B'){
+            //     setTimeout(function(){
+            //         move = ChessAI.playPosition(pos);
+            //         pos = ChessRules.applyMove(pos, ChessRules.pgnToMove(pos, move));
+            //         onSnapEnd();
+            //     }, 100)            
+            // }
         };
 
         var onSnapEnd = function() {            
