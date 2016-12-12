@@ -12,6 +12,9 @@
         },
         "cordova-plugin-file": {
             "PACKAGE_NAME": "com.otherg.ajedrez"
+        },
+        "cordova-plugin-crosswalk-webview": {
+            "PACKAGE_NAME": "com.otherg.ajedrez"
         }
     },
     "dependent_plugins": {
