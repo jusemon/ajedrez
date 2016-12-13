@@ -43,13 +43,13 @@ export default {
                 return 'snapback';
             }
             // Aqui para que la IA maneje los negros
-            // if(pos.turn == 'B'){
-            //     setTimeout(function(){
-            //         move = ChessAI.playPosition(pos);
-            //         pos = ChessRules.applyMove(pos, ChessRules.pgnToMove(pos, move));
-            //         onSnapEnd();
-            //     }, 100)            
-            // }
+            if(pos.turn == 'B'){
+                setTimeout(function(){
+                    move = ChessAI.playPosition(pos);
+                    pos = ChessRules.applyMove(pos, ChessRules.pgnToMove(pos, move));
+                    onSnapEnd();
+                }, 1000)            
+            }
         };
 
         var onSnapEnd = function() {            
