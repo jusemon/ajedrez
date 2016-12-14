@@ -2426,6 +2426,7 @@ $(document).ready(function(){
                   $overlay.velocity({opacity: 0 }, {duration: 200, queue: false, easing: 'easeOutQuad',
                     complete: function () {
                       $(this).remove();
+                      $('#sidenav-overlay').remove();
                     }});
                   $dragTarget.css({width: '10px', right: '', left: 0});
                 }
