@@ -20,7 +20,7 @@ export default {
 
         ChessAI.setOptions({
             depth: 4,
-            monitor: true,
+            monitor: false,
             strategy: 'basic',
             timeout: 10000
         });
